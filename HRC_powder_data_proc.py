@@ -115,6 +115,14 @@ for ii in range(1,MeasMatrix.shape[0]):
 if (BGcorrection):
     BGMatrix=np.genfromtxt(BG_File,delimiter=',',skip_header=1)
     BGMatrix_raw=np.genfromtxt(BG_File_raw,delimiter=',',skip_header=1)
+    for ii in range(BGMatrix.shape[0]):
+        for jj in range(BGMatrix.shape[1]):
+            if (np.isnan(BGMatrix[ii][jj])):
+                BGMatrix[ii][jj]=0.0
+    for ii in range(BGMatrix_raw.shape[0]):
+        for jj in range(BGMatrix_raw.shape[1]):
+            if (np.isnan(BGMatrix_raw[ii][jj])):
+                BGMatrix_raw[ii][jj]=0.0
     BGsubtMatrix=MeasMatrix/Meas_PN-BGMatrix/BG_PN
     for ii in range(MeasMatrix_raw.shape[0]):
         for jj in range(MeasMatrix_raw.shape[1]):
